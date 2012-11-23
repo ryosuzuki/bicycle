@@ -4,7 +4,29 @@
   <title>Bicycle</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "http://js.pusherapp.com/1.8/pusher.min.js" %>
   <%= csrf_meta_tags %>
+
+  <script type="text/javascript" charset="utf-8">
+  $(function() {
+    var pusher = new Pusher('13d2df4f6c18f0a24bfd'); // uses your API KEY
+    var channel = pusher.subscribe('test_channel');
+
+    pusher.connection.bind('connecting', function() {
+      $('div#status').text('Connecting to Pusher...');
+    });
+    pusher.connection.bind('connected', function() {
+      $('div#status').text('Connected to Pusher!');
+    });
+    pusher.connection.bind('failed', function() {
+      $('div#status').text('Connection to Pusher failed :(');
+    });
+    channel.bind('subscription_error', function(status) {
+      $('div#status').text('Pusher subscription_error');
+    });
+  });
+  </script>
+
 </head>
 <body>
 

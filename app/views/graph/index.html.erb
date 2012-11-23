@@ -1,7 +1,31 @@
 <script type="text/javascript">
+  $(function(){
+    var pusher  = new Pusher("13d2df4f6c18f0a24bfd");
+    var channel = pusher.subscribe("channel");
+    channel.bind("event", function(html) {
+      $("ul").prepend(html);
+    });
+  });
+  $(document).ready(function(){
+    $("#post").click(function(){
+      $.ajax({
+        type: "POST",
+        url: "/add",
+        data: "power="+$('#power').val(),
+        success: function() {},
+      });
+    });
+  })
+</script>
+
+
+<div id="status"></div>
+
+<script type="text/javascript">
+
 $(function() {
 
-  new Highcharts.Chart({
+var chart =  new Highcharts.Chart({
     chart: {
       renderTo: 'graph',
       defaultSeriesType: 'spline',
