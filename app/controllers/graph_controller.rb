@@ -7,8 +7,12 @@ class GraphController < ApplicationController
   end
 
   def add 
-    Power.create(:wat => params[:power])
-    Battery.create(:wat => params[:battery])
+    Power.create(:wat => 100)
+    Battery.create(:wat => 100)
+
+    @battery = Battery.pluck(:wat)
+    @power = Power.pluck(:wat)
+
   end
 
 end
