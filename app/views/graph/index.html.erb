@@ -2,6 +2,68 @@
 <%= Time.now %>
 
 <script type="text/javascript">
+$(function() {
+  new Highcharts.Chart({
+    chart: {
+      renderTo: 'graph',
+      defaultSeriesType: 'spline',
+      marginRight: 10,
+      events: {
+        load: function() {
+          var series = this.series[0];
+          setInterval(function() {
+            var x = (new Date()).getTime(),
+            y = Math.random();
+            series.addPoint([x, y], true, true);
+          }, 1000);
+        }
+      }
+    },
+    title: {
+      text: 'Live random data',
+      style: {
+        margin: '10px 100px 0 0'
+      }
+    },
+    xAxis: {
+      type: 'datetime',
+      tickPixelInterval: 150
+    },
+    yAxis: {
+      title: {
+        text: 'Value'
+      },
+      plotLines: [{
+        value: 0,
+        width: 1,
+        color: '#808080'}]
+    },
+    legend: {
+        enabled: false
+    },
+    exporting: {
+        enabled: false
+    },
+    plotOptions: {
+      spline: {
+        dataLabels: {
+          enabled: true,
+          formatter: function() {
+            if (!this.series.inc) this.series.inc = 1;
+            if (this.series.inc >= parseInt(this.series.data.length)) {
+              this.series.inc = 0;
+              return this.point.y;
+            }
+            this.series.inc++;
+          }
+        }
+      }
+    },
+    series: [{
+      data: [0.1, 0.2, 0.5, 0.7]
+    }]
+  }); 
+});
 </script>
 
 <div id="graph" style="width: 100%;"></div>
