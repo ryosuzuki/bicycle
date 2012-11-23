@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(:version => 20121123070447) do
 
   create_table "batteries", :force => true do |t|
-    t.float    "wat"
+    t.float    "watt"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "powers", :force => true do |t|
-    t.float    "wat"
+    t.float    "watt"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

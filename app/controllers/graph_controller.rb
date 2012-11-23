@@ -1,18 +1,12 @@
 class GraphController < ApplicationController
   def index
-    @a = 395
-
-    @battery = Battery.pluck(:wat)
-    @power = Power.pluck(:wat)
+    @battery = Battery.pluck(:watt)
+    @power = Power.pluck(:watt)
   end
 
   def add 
-    Power.create(:wat => 100)
-    Battery.create(:wat => 100)
-
-    @battery = Battery.pluck(:wat)
-    @power = Power.pluck(:wat)
-
+    Power.create(:watt => params[:power])
+    Battery.create(:watt => params[:battery])
   end
 
 end

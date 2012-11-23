@@ -1,3 +1,3 @@
 class Battery < ActiveRecord::Base
-  attr_accessible :wat
+  attr_accessible :watt
 end

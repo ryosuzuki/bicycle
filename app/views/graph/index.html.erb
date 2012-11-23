@@ -12,8 +12,8 @@ $(function() {
           var battery = this.series[1];
           setInterval(function() {
             var x = (new Date()).getTime(),
-            p = <%= Power.last.wat %>,
-            b = <%= Battery.last.wat %>
+            p = <%= Power.last.watt %>,
+            b = <%= Battery.last.watt %>
 
             power.addPoint([x, p], true, true);
             battery.addPoint([x, b], true, true);
@@ -29,7 +29,7 @@ $(function() {
     },
     xAxis: {
       type: 'datetime',
-      tickPixelInterval: 1500
+      tickPixelInterval: 150x
     },
     yAxis: {
       title: {
