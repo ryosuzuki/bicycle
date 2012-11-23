@@ -1,7 +1,5 @@
-
-<%= Time.now %>
-
 <script type="text/javascript">
+
 $(function() {
   new Highcharts.Chart({
     chart: {
@@ -10,17 +8,21 @@ $(function() {
       marginRight: 10,
       events: {
         load: function() {
-          var series = this.series[0];
+          var power = this.series[0];
+          var battery = this.series[1];
           setInterval(function() {
             var x = (new Date()).getTime(),
-            y = <%= Power.last.wat %>
-            series.addPoint([x, y], true, true);
+            p = <%= Power.last.wat %>,
+            b = <%= Battery.last.wat %>
+
+            power.addPoint([x, p], true, true);
+            battery.addPoint([x, b], true, true);
           }, 1000);
         }
       }
     },
     title: {
-      text: 'Live random data',
+      text: 'Live Data',
       style: {
         margin: '10px 100px 0 0'
       }
@@ -72,20 +74,4 @@ $(function() {
 </script>
 
 <div id="graph" style="width: 100%;"></div>
-
-<%= @a %>
-
-<% @power.each do |p| %>
-<h1><%= p %></h1>
-<% end %>
-
-<% @battery.each do |b| %>
-<h1><%= b %></h1>
-<% end %>
-
-
-
-
-
-hello world
 
