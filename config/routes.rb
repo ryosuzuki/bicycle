@@ -1,7 +1,7 @@
 Bicycle::Application.routes.draw do
   
   root :to => 'graph#index', :via => :get  
-  match 'add' => 'graph#add', :via => :get
+  match 'add' => 'graph#add', :via => :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -13,7 +13,7 @@ $(function() {
           var series = this.series[0];
           setInterval(function() {
             var x = (new Date()).getTime(),
-            y = Math.random();
+            y = <%= Power.last.wat %>
             series.addPoint([x, y], true, true);
           }, 1000);
         }
@@ -27,7 +27,7 @@ $(function() {
     },
     xAxis: {
       type: 'datetime',
-      tickPixelInterval: 150
+      tickPixelInterval: 1500
     },
     yAxis: {
       title: {
@@ -60,7 +60,12 @@ $(function() {
       }
     },
     series: [{
-      data: [0.1, 0.2, 0.5, 0.7]
+      name: "Power",
+      data: <%= @power %>
+    },
+    {
+      name: "Battery",
+      data: <%= @battery %>
     }]
   }); 
 });
