@@ -1,27 +1,7 @@
 
-<script type="text/javascript" charset="utf-8">
-$(function () {
-  new Highcharts.Chart({
-    chart: { renderTo: 'graph' },
-    title: { text: 'Power' },
-    xAxis: { type: 'Time' },
-    yAxis: {
-      title: { text: 'Wat'}
-    },
-    series: [{
-      name: "Power",
-      pointInterval: <%= 1.day * 1000 %>,
-      pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,
-      data: <%= @power %>
-    },
-    {
-      name: "Battery",
-      pointInterval: <%= 1.day * 1000 %>,
-      pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,
-      data: <%= @battery %>
-    }]
-  });
-});
+<%= Time.now %>
+
+<script type="text/javascript">
 </script>
 
 <div id="graph" style="width: 100%;"></div>
