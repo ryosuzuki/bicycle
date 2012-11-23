@@ -1,29 +1,17 @@
-<script type="text/javascript">
-  $(function(){
-    var pusher  = new Pusher("13d2df4f6c18f0a24bfd");
-    var channel = pusher.subscribe("channel");
-    channel.bind("event", function(html) {
-      $("ul").prepend(html);
-    });
-  });
-  $(document).ready(function(){
-    $("#post").click(function(){
-      $.ajax({
-        type: "POST",
-        url: "/add",
-        data: "power="+$('#power').val(),
-        success: function() {},
-      });
-    });
-  })
-</script>
+<div id="refresh-power">
+0.0
+</div>
 
-
-<div id="status"></div>
+<div id="refresh-battery">
+1.0
+</div>
 
 <script type="text/javascript">
-
 $(function() {
+
+setInterval(function(){ $('#refresh-power').load('/refresh/power'); }, 1000);
+setInterval(function(){ $('#refresh-battery').load('/refresh/battery'); }, 1000);
+
 
 var chart =  new Highcharts.Chart({
     chart: {
@@ -36,8 +24,8 @@ var chart =  new Highcharts.Chart({
           var battery = this.series[1];
           setInterval(function() {
             var x = (new Date()).getTime(),
-            p = <%= Power.last.watt %>,
-            b = <%= Battery.last.watt %>
+            p = parseFloat($("#refresh-power").text()),
+            b = parseFloat($("#refresh-battery").text())
 
             power.addPoint([x, p], true, true);
             battery.addPoint([x, b], true, true);

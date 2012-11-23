@@ -8,23 +8,11 @@
   <%= csrf_meta_tags %>
 
   <script type="text/javascript" charset="utf-8">
-  $(function() {
     var pusher = new Pusher('13d2df4f6c18f0a24bfd'); // uses your API KEY
     var channel = pusher.subscribe('test_channel');
-
-    pusher.connection.bind('connecting', function() {
-      $('div#status').text('Connecting to Pusher...');
+    channel.bind('greet', function(data) {
+      alert(data.greeting);
     });
-    pusher.connection.bind('connected', function() {
-      $('div#status').text('Connected to Pusher!');
-    });
-    pusher.connection.bind('failed', function() {
-      $('div#status').text('Connection to Pusher failed :(');
-    });
-    channel.bind('subscription_error', function(status) {
-      $('div#status').text('Pusher subscription_error');
-    });
-  });
   </script>
 
 </head>

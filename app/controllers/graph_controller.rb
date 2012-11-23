@@ -7,17 +7,16 @@ class GraphController < ApplicationController
   def add
     Power.create(:watt => params[:power])
     Battery.create(:watt => params[:battery])
-    
-    @power = Power.last
-    @battery = Battery.last
+  end
 
-    Pusher['test_channel'].trigger('greet', { :greeting => "Hello there!" })
-
-#    response = Pusher[params[:channel_name]].authenticate(params[:socket_id])
-#    render :json => response
-
-#    Pusher["channel"].trigger("event", params[:power] + "<br />")
-#    render :text => "success"
+  def refresh    
+    if params[:id] == 'power'
+      @power = Power.last
+      render :text => @power.watt
+    elsif params[:id] == 'battery'     
+      @battery = Battery.last
+      render :text => @battery.watt
+    end
   end
 
 end
