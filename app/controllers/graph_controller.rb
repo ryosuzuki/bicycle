@@ -7,6 +7,8 @@ class GraphController < ApplicationController
   def add
     Power.create(:watt => params[:power])
     Battery.create(:watt => params[:battery])
+    
+    render :text => 'ok'
   end
 
   def refresh    
