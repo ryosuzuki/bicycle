@@ -4,16 +4,7 @@
   <title>Bicycle</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "http://js.pusherapp.com/1.8/pusher.min.js" %>
   <%= csrf_meta_tags %>
-
-  <script type="text/javascript" charset="utf-8">
-    var pusher = new Pusher('13d2df4f6c18f0a24bfd'); // uses your API KEY
-    var channel = pusher.subscribe('test_channel');
-    channel.bind('greet', function(data) {
-      alert(data.greeting);
-    });
-  </script>
 
 </head>
 <body>

@@ -52,6 +52,11 @@ var chart =  new Highcharts.Chart({
         width: 1,
         color: '#808080'}]
     },
+    tooltip: {
+      formatter: function() {
+        return '<b>' + this.series.name + '</b><br/>' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' + Highcharts.numberFormat(this.y, 2);
+      }
+    },
     legend: {
         enabled: false
     },
@@ -74,12 +79,34 @@ var chart =  new Highcharts.Chart({
       }
     },
     series: [{
-      name: "Power",
-      data: <%= @power %>
+       name: 'Power',
+       data: (function() {
+         var data = [],
+             time = (new Date()).getTime(),
+             i;
+         for (i = -30; i <= 0; i++) {
+           data.push({
+             x: time + i * 1000,
+             y: Math.random()
+           });
+         }
+         return data;
+        })()
     },
     {
-      name: "Battery",
-      data: <%= @battery %>
+       name: 'Battery',
+       data: (function() {
+         var data = [],
+             time = (new Date()).getTime(),
+             i;
+         for (i = -30; i <= 0; i++) {
+           data.push({
+             x: time + i * 1000,
+             y: Math.random()
+           });
+         }
+         return data;
+        })()
     }]
   }); 
 });
