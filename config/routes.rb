@@ -1,8 +1,8 @@
 Bicycle::Application.routes.draw do
   
-  root :to => 'graph#index', :via => :get  
-  match 'add' => 'graph#add', :via => :get
-  match 'refresh/:id' => 'graph#refresh', :via => :get
+  root 'graph#index'
+  get 'add' => 'graph#add'
+  get 'refresh' => 'graph#refresh'
 
 
   # The priority is based upon order of creation:

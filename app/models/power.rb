@@ -1,6 +1,4 @@
 class Power < ActiveRecord::Base
-  attr_accessible :watt
-
   validates :watt, :presence => true
 
   after_create :hoge

@@ -11,14 +11,18 @@ class GraphController < ApplicationController
     render :text => 'ok'
   end
 
-  def refresh    
-    if params[:id] == 'power'
-      @power = Power.last
-      render :text => @power.watt
-    elsif params[:id] == 'battery'     
-      @battery = Battery.last
-      render :text => @battery.watt
-    end
+  def refresh
+    @data = { :power => rand, :battery => rand }
+    render :json => @data
+  end
+
+  private
+  def battery_params
+    params.require(:power).permit(:watt)
+  end
+
+  def power_params
+    params.require(:power).permit(:watt)
   end
 
 end
